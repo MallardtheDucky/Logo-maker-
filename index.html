@@ -6,7 +6,7 @@
     <title>Tales of the New Era - Logo Forge</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Oswald:wght@500;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Oswald:wght@500;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --sw-yellow: #FFE81F;
@@ -94,13 +94,36 @@
             text-transform: uppercase;
             line-height: 1;
             transform: scaleY(1.2); 
-            /* 3D Stacked Shadow Effect */
             text-shadow: 
                 -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
                 0px 4px 0px rgba(255, 232, 31, 0.7),
-                0px 8px 15px rgba(0, 0, 0, 0.8);
+                0px 8px 15px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(255,232,31,0.25);
             position: relative;
             z-index: 30;
+            animation: starwars-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes starwars-pulse {
+            0%, 100% { text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0px 4px 0px rgba(255, 232, 31, 0.7), 0px 8px 15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255,232,31,0.25); }
+            50% { text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0px 4px 0px rgba(255, 232, 31, 0.9), 0px 8px 15px rgba(0, 0, 0, 0.8), 0 0 70px rgba(255,232,31,0.5), 0 0 120px rgba(255,232,31,0.2); }
+        }
+
+        /* IMPROVED: Tales of the - now fully visible with metallic gradient */
+        .tales-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.55em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 30;
+            line-height: 1;
+            /* Metallic gold gradient matching Star Wars aesthetic */
+            background: linear-gradient(180deg, #fff7cc 0%, #ffe81f 30%, #d4a017 60%, #ffe81f 80%, #fff5a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,1)) drop-shadow(0 0 14px rgba(255,232,31,0.7));
         }
 
         .era-title {
@@ -111,10 +134,69 @@
         }
         
         .era-gradient {
-            background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 50%, #e4e4e7 51%, #ffffff 100%);
+            background: linear-gradient(180deg, #ffffff 0%, #d4d4d4 30%, #f0f0f0 50%, #c8c8c8 70%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.9)) drop-shadow(0 0 10px rgba(255,255,255,0.2));
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,1)) drop-shadow(0 0 20px rgba(255,255,255,0.35));
+        }
+
+        /* Decorative divider lines flanking "TALES OF THE" */
+        .tales-divider {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            z-index: 30;
+        }
+        .tales-divider-line {
+            height: 1px;
+            width: 40px;
+            background: linear-gradient(90deg, transparent, rgba(255,232,31,0.8), transparent);
+        }
+        .tales-divider-diamond {
+            width: 4px; height: 4px;
+            background: var(--sw-yellow);
+            transform: rotate(45deg);
+            box-shadow: 0 0 8px var(--sw-yellow);
+        }
+
+        /* Decorative horizontal rule above STAR WARS */
+        .logo-rule {
+            width: 80%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,232,31,0.4) 20%, rgba(255,255,255,0.6) 50%, rgba(220,38,38,0.4) 80%, transparent);
+            position: relative; z-index: 30;
+            box-shadow: 0 0 8px rgba(255,255,255,0.3);
+        }
+        .logo-rule-bottom {
+            width: 60%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(14,165,233,0.5) 20%, rgba(255,255,255,0.7) 50%, rgba(220,38,38,0.5) 80%, transparent);
+            position: relative; z-index: 30;
+        }
+
+        /* HUD Corner Brackets */
+        .hud-corner {
+            position: absolute; width: 28px; height: 28px; z-index: 50; pointer-events: none;
+        }
+        .hud-corner-tl { top: 10px; left: 10px; border-top: 2px solid rgba(14,165,233,0.8); border-left: 2px solid rgba(14,165,233,0.8); }
+        .hud-corner-tr { top: 10px; right: 10px; border-top: 2px solid rgba(220,38,38,0.8); border-right: 2px solid rgba(220,38,38,0.8); }
+        .hud-corner-bl { bottom: 10px; left: 10px; border-bottom: 2px solid rgba(14,165,233,0.8); border-left: 2px solid rgba(14,165,233,0.8); }
+        .hud-corner-br { bottom: 10px; right: 10px; border-bottom: 2px solid rgba(220,38,38,0.8); border-right: 2px solid rgba(220,38,38,0.8); }
+
+        /* HUD Tick marks on edges */
+        .hud-tick-top { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 1px; height: 14px; background: rgba(255,255,255,0.25); z-index: 50; }
+        .hud-tick-bottom { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 1px; height: 14px; background: rgba(255,255,255,0.25); z-index: 50; }
+        .hud-tick-left { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); height: 1px; width: 14px; background: rgba(255,255,255,0.25); z-index: 50; }
+        .hud-tick-right { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 1px; width: 14px; background: rgba(255,255,255,0.25); z-index: 50; }
+
+        /* Era badge / datestamp */
+        .era-badge {
+            position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+            z-index: 50; pointer-events: none;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.55rem; letter-spacing: 0.4em;
+            color: rgba(255,255,255,0.35); text-transform: uppercase;
+            white-space: nowrap;
         }
 
         /* The Intense Diagonal Clash Line */
@@ -129,19 +211,30 @@
             width: 100%; height: 3px; background: #ffffff;
             box-shadow: 0 0 10px #fff, 0 0 20px #fff;
             position: absolute;
+            animation: beam-flicker 2s ease-in-out infinite;
+        }
+
+        @keyframes beam-flicker {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px #fff, 0 0 20px #fff; }
+            50% { opacity: 0.85; box-shadow: 0 0 15px #fff, 0 0 35px #fff, 0 0 55px rgba(255,232,31,0.3); }
         }
 
         .clash-beam-nr-glow {
             width: 100%; height: 10px; position: absolute; top: -5px;
             background: linear-gradient(90deg, transparent, var(--nr-blue), transparent);
             filter: blur(8px); opacity: 0.8;
+            animation: glow-pulse-nr 2.5s ease-in-out infinite;
         }
 
         .clash-beam-gi-glow {
             width: 100%; height: 10px; position: absolute; bottom: -5px;
             background: linear-gradient(90deg, transparent, var(--gi-red), transparent);
             filter: blur(8px); opacity: 0.8;
+            animation: glow-pulse-gi 2.5s ease-in-out infinite;
         }
+
+        @keyframes glow-pulse-nr { 0%,100%{opacity:0.7;} 50%{opacity:1;filter:blur(10px);} }
+        @keyframes glow-pulse-gi { 0%,100%{opacity:0.7;} 50%{opacity:1;filter:blur(10px);} }
 
         /* Lightning effect overlaid on the clash */
         .clash-lightning {
@@ -157,6 +250,29 @@
             width: 350px; height: 350px;
             background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,232,31,0.8) 15%, rgba(220,38,38,0.4) 30%, rgba(14,165,233,0.2) 50%, transparent 70%);
             filter: blur(4px); pointer-events: none; z-index: 25; mix-blend-mode: screen;
+            animation: flare-breathe 3s ease-in-out infinite;
+        }
+
+        @keyframes flare-breathe {
+            0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%,-50%) scale(1.12); opacity: 0.85; }
+        }
+
+        /* Animated energy rings from the clash center */
+        .energy-ring {
+            position: absolute; top: 50%; left: 50%;
+            border-radius: 50%;
+            border: 1px solid rgba(255,232,31,0.5);
+            transform: translate(-50%,-50%) scale(0);
+            pointer-events: none; z-index: 22;
+            animation: ring-expand 4s ease-out infinite;
+        }
+        .energy-ring:nth-child(2) { animation-delay: 1.3s; border-color: rgba(14,165,233,0.4); }
+        .energy-ring:nth-child(3) { animation-delay: 2.6s; border-color: rgba(220,38,38,0.4); }
+
+        @keyframes ring-expand {
+            0% { width: 30px; height: 30px; transform: translate(-50%,-50%) scale(1); opacity: 0.9; }
+            100% { width: 400px; height: 400px; transform: translate(-50%,-50%) scale(1); opacity: 0; }
         }
 
         .clash-sparks {
@@ -177,8 +293,9 @@
             pointer-events: none; z-index: 15;
         }
 
+        /* Animated scanlines */
         .scanlines {
-            position: absolute; inset: 0; z-index: 40; pointer-events: none; opacity: 0.15;
+            position: absolute; inset: 0; z-index: 40; pointer-events: none; opacity: 0.12;
             background: repeating-linear-gradient(0deg, transparent, transparent 2px, #000 2px, #000 4px);
         }
         
@@ -186,6 +303,38 @@
             position: absolute; inset: 0; z-index: 45; pointer-events: none;
             background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.85) 120%);
         }
+
+        /* Animated star field */
+        .starfield {
+            position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden;
+        }
+        .star-dot {
+            position: absolute; border-radius: 50%; background: white;
+            animation: star-twinkle var(--dur, 3s) ease-in-out infinite;
+            animation-delay: var(--del, 0s);
+        }
+        @keyframes star-twinkle {
+            0%,100% { opacity: var(--min-op, 0.2); transform: scale(1); }
+            50% { opacity: var(--max-op, 0.8); transform: scale(1.5); }
+        }
+
+        /* Subtle animated NR side aurora */
+        .nr-aurora {
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 20% 30%, rgba(14,165,233,0.18) 0%, transparent 55%);
+            animation: aurora-nr 5s ease-in-out infinite alternate;
+            pointer-events: none; z-index: 2;
+        }
+        @keyframes aurora-nr { 0%{opacity:0.6;} 100%{opacity:1;} }
+
+        /* Subtle animated GI side aurora */
+        .gi-aurora {
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 80% 70%, rgba(220,38,38,0.18) 0%, transparent 55%);
+            animation: aurora-gi 5s ease-in-out infinite alternate-reverse;
+            pointer-events: none; z-index: 2;
+        }
+        @keyframes aurora-gi { 0%{opacity:0.6;} 100%{opacity:1;} }
 
         .holonet-frame {
             background: rgba(5,5,10,0.9); padding: 12px; border-radius: 20px;
@@ -211,6 +360,7 @@
         @media (max-width: 768px) {
             .sw-title-classic { font-size: 3rem; -webkit-text-stroke: 1.5px var(--sw-yellow); }
             .era-title { font-size: 1.5rem; }
+            .tales-subtitle { font-size: 0.7rem; letter-spacing: 0.4em; }
             .clash-flare { width: 200px; height: 200px; }
             .holonet-frame { padding: 8px; }
         }
@@ -327,12 +477,17 @@
                 <!-- THE ACTUAL AREA CAPTURED BY HTML2CANVAS -->
                 <div id="capture-area" class="w-full h-full transition-all duration-500 ease-in-out overflow-hidden relative bg-[#020202] rounded-xl">
                     
+                    <!-- Animated starfield (both sides) -->
+                    <div class="starfield" id="starfield"></div>
+
+                    <!-- Animated auroras (full canvas, below clip layers) -->
+                    <div class="nr-aurora"></div>
+                    <div class="gi-aurora"></div>
+
                     <!-- NEW REPUBLIC BACKGROUND (Top Left Triangle) -->
                     <div class="absolute inset-0 clip-nr z-0">
                         <div class="absolute inset-0 bg-gradient-to-br from-[var(--nr-dark)] via-[#0f3460] to-black"></div>
-                        <!-- Tech Grid Overlay -->
                         <div class="absolute inset-0 pattern-grid opacity-70"></div>
-                        <!-- Stars overlay -->
                         <div class="absolute inset-0 opacity-50 mix-blend-screen" style="background-image: radial-gradient(white, rgba(255,255,255,.3) 2px, transparent 40px); background-size: 550px 550px;"></div>
                         <img id="nr-bg-preview" src="" class="absolute inset-0 w-full h-full object-cover opacity-65 mix-blend-lighten hidden" />
                     </div>
@@ -340,9 +495,7 @@
                     <!-- GALACTIC IMPERIUM BACKGROUND (Bottom Right Triangle) -->
                     <div class="absolute inset-0 clip-gi z-0">
                         <div class="absolute inset-0 bg-gradient-to-tl from-[var(--gi-dark)] via-[#5e0a0a] to-black"></div>
-                        <!-- Sith Hex Grid Overlay -->
                         <div class="absolute inset-0 pattern-hex opacity-60"></div>
-                        <!-- Stars overlay -->
                         <div class="absolute inset-0 opacity-50 mix-blend-screen" style="background-image: radial-gradient(white, rgba(255,255,255,.3) 2px, transparent 40px); background-size: 550px 550px; background-position: 40px 60px;"></div>
                         <img id="gi-bg-preview" src="" class="absolute inset-0 w-full h-full object-cover opacity-65 mix-blend-lighten hidden" />
                     </div>
@@ -383,19 +536,54 @@
                         <div class="clash-beam-core"></div>
                         <div class="clash-lightning"></div>
                     </div>
+
+                    <!-- Energy rings from clash center -->
+                    <div class="energy-ring"></div>
+                    <div class="energy-ring"></div>
+                    <div class="energy-ring"></div>
                     
                     <div class="clash-sparks"></div>
                     <div class="clash-flare"></div>
 
                     <!-- TEXT LAYER -->
                     <div class="cinematic-glow"></div>
-                    <div class="absolute z-30 top-1/2 left-0 right-0 transform -translate-y-1/2 flex flex-col items-center justify-center pointer-events-none mt-2">
+                    <div class="absolute z-30 top-1/2 left-0 right-0 transform -translate-y-1/2 flex flex-col items-center justify-center pointer-events-none" style="margin-top: 4px;">
+                        <!-- Top decorative rule -->
+                        <div class="logo-rule mb-2"></div>
+
+                        <!-- STAR WARS title -->
                         <h2 class="sw-title-classic">STAR WARS</h2>
-                        <div class="text-center mt-3">
-                            <h3 class="era-title text-[1rem] md:text-xl font-bold uppercase tracking-[0.5em] text-gray-300 mb-1 leading-none drop-shadow-md">Tales of the</h3>
-                            <h1 class="era-title era-gradient text-3xl md:text-5xl font-black uppercase leading-none">New Era</h1>
+
+                        <!-- Divider with "TALES OF THE" styled in gold -->
+                        <div class="tales-divider mt-2 mb-1">
+                            <div class="tales-divider-line"></div>
+                            <div class="tales-divider-diamond"></div>
+                            <span class="tales-subtitle">Tales&nbsp;of&nbsp;the</span>
+                            <div class="tales-divider-diamond"></div>
+                            <div class="tales-divider-line"></div>
                         </div>
+
+                        <!-- NEW ERA large title -->
+                        <h1 class="era-title era-gradient text-4xl md:text-5xl font-black uppercase leading-none">New Era</h1>
+
+                        <!-- Bottom rule -->
+                        <div class="logo-rule-bottom mt-2"></div>
                     </div>
+
+                    <!-- HUD Corner Brackets -->
+                    <div class="hud-corner hud-corner-tl"></div>
+                    <div class="hud-corner hud-corner-tr"></div>
+                    <div class="hud-corner hud-corner-bl"></div>
+                    <div class="hud-corner hud-corner-br"></div>
+
+                    <!-- HUD tick marks -->
+                    <div class="hud-tick-top"></div>
+                    <div class="hud-tick-bottom"></div>
+                    <div class="hud-tick-left"></div>
+                    <div class="hud-tick-right"></div>
+
+                    <!-- Era badge -->
+                    <div class="era-badge">17 ABY · Legends Continuity</div>
 
                     <!-- Cinematic Overlays -->
                     <div class="scanlines"></div>
@@ -416,6 +604,34 @@
     <div id="toast-container"></div>
 
     <script>
+        // Generate animated starfield
+        (function() {
+            const sf = document.getElementById('starfield');
+            const starData = [
+                {x:8,y:12,s:1.2,dur:2.8,del:0,minO:0.3,maxO:0.9},
+                {x:18,y:5,s:0.8,dur:3.5,del:0.6,minO:0.2,maxO:0.7},
+                {x:30,y:20,s:1,dur:2.2,del:1.1,minO:0.15,maxO:0.6},
+                {x:5,y:40,s:1.5,dur:4,del:0.3,minO:0.2,maxO:0.8},
+                {x:22,y:60,s:0.6,dur:3.1,del:1.8,minO:0.1,maxO:0.5},
+                {x:12,y:78,s:1.1,dur:2.6,del:0.9,minO:0.25,maxO:0.75},
+                {x:35,y:88,s:0.9,dur:3.8,del:0.4,minO:0.2,maxO:0.65},
+                {x:75,y:10,s:1.3,dur:2.9,del:1.5,minO:0.3,maxO:0.9},
+                {x:85,y:25,s:0.7,dur:3.3,del:0.2,minO:0.15,maxO:0.6},
+                {x:92,y:45,s:1,dur:2.5,del:1.2,minO:0.2,maxO:0.7},
+                {x:80,y:65,s:1.4,dur:4.1,del:0.7,minO:0.25,maxO:0.85},
+                {x:70,y:80,s:0.8,dur:3.6,del:0.1,minO:0.1,maxO:0.55},
+                {x:88,y:90,s:1.1,dur:2.7,del:2,minO:0.2,maxO:0.7},
+                {x:60,y:8,s:0.9,dur:3.2,del:1.4,minO:0.15,maxO:0.5},
+                {x:45,y:92,s:1.2,dur:2.4,del:0.8,minO:0.3,maxO:0.8},
+            ];
+            starData.forEach(d => {
+                const el = document.createElement('div');
+                el.className = 'star-dot';
+                el.style.cssText = `left:${d.x}%;top:${d.y}%;width:${d.s}px;height:${d.s}px;--dur:${d.dur}s;--del:${d.del}s;--min-op:${d.minO};--max-op:${d.maxO};`;
+                sf.appendChild(el);
+            });
+        })();
+
         // Custom Toast Notification System
         function showToast(message, type = 'error') {
             const container = document.getElementById('toast-container');
@@ -428,11 +644,7 @@
             
             toast.innerHTML = `${icon} <span class="align-middle">${message}</span>`;
             container.appendChild(toast);
-
-            // Animate in
             setTimeout(() => toast.classList.add('show'), 10);
-
-            // Animate out and remove
             setTimeout(() => {
                 toast.classList.remove('show');
                 setTimeout(() => toast.remove(), 400);
@@ -528,10 +740,10 @@
             btn.disabled = true;
             btn.classList.add('opacity-70', 'cursor-not-allowed');
 
-            logoElement.offsetHeight; // Force reflow
+            logoElement.offsetHeight;
 
             html2canvas(logoElement, {
-                scale: 3, // High resolution (3x)
+                scale: 3,
                 useCORS: true,
                 backgroundColor: null,
                 logging: false,
